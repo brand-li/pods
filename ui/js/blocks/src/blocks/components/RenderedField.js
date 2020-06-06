@@ -43,10 +43,24 @@ import NumberControl from '../../components/NumberControl';
  * @return {Function} Function update attributes to attach to an `onChange` prop.
  */
 const createChangeHandler = ( name, setAttributes, type ) => ( newValue ) => {
-	setAttributes( {
-			[ name ]: 'NumberControl' === type ? parseInt( newValue, 10 ) : newValue,
-	} );
-}
+	switch ( type ) {
+		case 'NumberControl':
+			setAttributes( {
+				[ name ]: parseInt( newValue, 10 ),
+			} );
+			break;
+		// case 'SelectControl':
+		// 	setAttributes( {
+		// 		[ name ]: newValue.value,
+		// 	} );
+		// 	break;
+		default:
+			setAttributes( {
+				[ name ]: newValue,
+			} );
+			break;
+	}
+};
 
 /**
  * Renders an individual field to be used in a template.
@@ -192,9 +206,9 @@ const RenderedField = ( {
 						onChange={ changeHandler }
 						styles={ {
 							container: ( provided ) => ( {
-							...provided,
-							width: '100%',
-							} )
+								...provided,
+								width: '100%',
+							} ),
 						} }
 					/>
 				</BaseControl>

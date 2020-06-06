@@ -180,7 +180,10 @@ class Item_List extends Base {
 					'before' => __( 'Before list', 'pods' ),
 					'after'  => __( 'After list', 'pods' ),
 				],
-				'default' => 'before',
+				'default' => [
+					'label' => __( 'Before list', 'pods' ),
+					'value' => 'before',
+				],
 			],
 			[
 				'name'    => 'expires',
@@ -210,6 +213,8 @@ class Item_List extends Base {
 	public function render( $attributes = [] ) {
 		$attributes = $this->attributes( $attributes );
 		$attributes = array_map( 'trim', $attributes );
+
+		error_log( print_r( $attributes, true ) );
 
 		if ( empty( $attributes['template'] ) && empty( $attributes['template_custom'] ) ) {
 			if ( is_admin() || wp_is_json_request() ) {

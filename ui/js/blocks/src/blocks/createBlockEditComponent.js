@@ -31,6 +31,8 @@ const createBlockEditComponent = ( block ) => ( props ) => {
 		setAttributes,
 	} = props;
 
+	console.log( { ...props } );
+
 	return (
 		<div className={ className }>
 			<InspectorControls>
