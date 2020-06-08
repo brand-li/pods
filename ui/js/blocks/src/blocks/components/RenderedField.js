@@ -43,23 +43,9 @@ import NumberControl from '../../components/NumberControl';
  * @return {Function} Function update attributes to attach to an `onChange` prop.
  */
 const createChangeHandler = ( name, setAttributes, type ) => ( newValue ) => {
-	switch ( type ) {
-		case 'NumberControl':
-			setAttributes( {
-				[ name ]: parseInt( newValue, 10 ),
-			} );
-			break;
-		// case 'SelectControl':
-		// 	setAttributes( {
-		// 		[ name ]: newValue.value,
-		// 	} );
-		// 	break;
-		default:
-			setAttributes( {
-				[ name ]: newValue,
-			} );
-			break;
-	}
+	setAttributes( {
+		[ name ]: 'NumberControl' === type ? parseInt( newValue, 10 ) : newValue,
+	} );
 };
 
 /**
