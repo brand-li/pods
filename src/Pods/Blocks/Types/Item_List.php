@@ -214,8 +214,6 @@ class Item_List extends Base {
 		$attributes = $this->attributes( $attributes );
 		$attributes = array_map( 'trim', $attributes );
 
-		error_log( print_r( $attributes, true ) );
-
 		if ( empty( $attributes['template'] ) && empty( $attributes['template_custom'] ) ) {
 			if ( is_admin() || wp_is_json_request() ) {
 				return __( 'No preview available, please fill in more Block details.', 'pods' );
